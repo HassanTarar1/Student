@@ -5,7 +5,6 @@ import com.example.studentinfo.Repository.studentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class studentController {
 
     @Autowired
     studentRepository studentRepository;
-    @PostMapping("/create")
+    @PostMapping("/students")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
@@ -34,7 +33,7 @@ public class studentController {
     }
 
     @DeleteMapping("/delete")
-    public String DeleteStudent(Student student){
+    public String DeleteStudent(){
          studentRepository.deleteAll();
          return "Deleted Successfully";
     }
