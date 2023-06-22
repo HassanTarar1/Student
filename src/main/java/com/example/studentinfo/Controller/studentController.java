@@ -3,18 +3,20 @@ package com.example.studentinfo.Controller;
 import com.example.studentinfo.Model.Student;
 import com.example.studentinfo.Repository.studentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Profile("prod")
 @RequestMapping("/")
 public class studentController {
 
     @Autowired
     studentRepository studentRepository;
+
+
     @PostMapping("/students")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
