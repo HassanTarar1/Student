@@ -1,31 +1,16 @@
-package com.example.studentinfo.Model;
+package com.example.studentinfo.DTO;
 
-
+import com.example.studentinfo.Model.Courses;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-
-import jakarta.websocket.OnMessage;
 
 import java.util.List;
 
-@Table(name = "Student")
-@Entity
-public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @NotNull(message = "First name is required")
-    @Min(3)
-    @Max(10)
+public class studentDto {
+
+
     private String firstName; // camel case
-    @NotNull(message = "Last name is required")
-    @Min(3)
-    @Max(10)
     private String lastName;
-    @NotNull(message = "Gpa is required")
     private double gpa;
 
 
@@ -33,24 +18,17 @@ public class Student {
     @JoinColumn(name="student_id", referencedColumnName = "id")
     private List<Courses> courses;
 
-    public Student(long id, String firstName, String lastname, double gpa) {
-        this.id = id;
+    public studentDto(String firstName, String lastname, double gpa) {
         this.firstName = firstName;
         this.lastName = lastName;
 
         this.gpa = gpa;
     }
-    public Student() {
+    public studentDto() {
 
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -88,7 +66,6 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", gpa=" + gpa +
                 '}';
